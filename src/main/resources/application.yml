@@ -3,8 +3,10 @@ spring:
     active: dev
   messages: 
     basename: messages
-  thymeleaf:
-    cache: false
+  #thymeleaf:
+    #prefix: classpath:/templates/
+    #suffix: .html
+    #cache: false #关闭缓存
       
 #spring.thymeleaf.prefix=classpath:/templates/  
 #spring.thymeleaf.suffix=.html  

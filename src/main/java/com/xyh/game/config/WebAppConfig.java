@@ -6,9 +6,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
-public class WebAppConfig extends WebMvcConfigurerAdapter{
+public class WebAppConfig implements WebMvcConfigurer {
     @Autowired  
     private MessageSource messageSource;  
 	@Override

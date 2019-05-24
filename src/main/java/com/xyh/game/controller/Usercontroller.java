@@ -44,7 +44,7 @@ public class Usercontroller {
 	}
 	@GetMapping("/user")
 	public String testthy(){
-		return "index2";
+		return "testim";
 	}
 
 
