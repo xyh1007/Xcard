@@ -14,7 +14,6 @@ import java.io.IOException;
 @ServerEndpoint(value = "/ws/de")
 public class DeWebSocket {
     private Logger logger = LoggerFactory.getLogger(DeWebSocket.class);
-    private Session session;
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
 /*     private static int onlineCount = 0;
    //concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。
@@ -40,7 +39,7 @@ public class DeWebSocket {
             log.error("websocket IO异常");
         }*/
         try {
-            sendMessage("连接成功");
+            session.getBasicRemote().sendText("连接成功");
         } catch (IOException e) {
            logger.info("onopenerror:",e);
         }
@@ -72,7 +71,8 @@ public class DeWebSocket {
                 e.printStackTrace();
             }
         }*/
-        logger.info(message);
+        //System.out.println(message);
+        logger.info("收到前台消息："+message);
     }
 
     /**
@@ -85,12 +85,4 @@ public class DeWebSocket {
 /*        log.error("发生错误");
         error.printStackTrace();*/
     }
-    /**
-     * 实现服务器主动推送
-     */
-    public void sendMessage(String message) throws IOException {
-        this.session.getBasicRemote().sendText(message);
-    }
-
-
 }

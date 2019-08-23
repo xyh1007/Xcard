@@ -11,6 +11,7 @@ public class ResResultEntity implements Serializable{
 	private int resultCode = -1;
     private String message;
 
+
     public int getResultCode() {
         return resultCode;
     }

@@ -1,8 +1,15 @@
 layui.use('layim', function(layim){
   //基础配置
+  var id = 1;
   layim.config({
 
-    init: {} //获取主面板列表信息，下文会做进一步介绍
+    init: {
+      url:'/user/info'
+      ,type:'get'
+      ,data:{
+        id:id
+      }
+    } //获取主面板列表信息，下文会做进一步介绍
     ,brief:false
     ,title:"nihao"
     ,min:true
@@ -37,26 +44,31 @@ layui.use('layim', function(layim){
   });
   //建立WebSocket通讯
   //注意：如果你要兼容ie8+，建议你采用 socket.io 的版本。下面是以原生WS为例
-
-  var socket = new WebSocket('ws://localhost:8080/ws/de');
-
+    var host = window.location.host;
+    var socket = null;
+    console.log(host)
+  if ('WebSocket' in window) {
+    socket = new WebSocket("ws:" + host + "/ws/de");
+  } else {
+    alert('当前浏览器 Not support websocket')
+  }
+  //连接成功建立的回调方法
+  socket.onopen = function() {
+    //console.log("WebSocket连接成功")
+    socket.send('XXX连接成功');
+  };
+  //接收到消息的回调方法
+  socket.onmessage = function (event) {
+    console.log(event.data);
+  }
   //发送一个消息
-  socket.send('Hi Server, I am LayIM!');
+  //socket.send('Hi Server, I am LayIM!');
 //更多情况下，一般是传递一个JSON
 //   socket.send(JSON.stringify({
 //     type: '' //随便定义，用于在服务端区分消息类型
 //     ,data: {}
 //   }));
   //连接成功时触发
-  socket.onopen = function(){
-    socket.send('XXX连接成功');
-  };
-
-  //监听收到的消息
-  socket.onmessage = function(res){
-    //res为接受到的值，如 {"emit": "messageName", "data": {}}
-    //emit即为发出的事件名，用于区分不同的消息
-  };
 
   //另外还有onclose、onerror，分别是在链接关闭和出错时触发。
 

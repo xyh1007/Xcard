@@ -3,9 +3,12 @@ package com.xyh.game.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.xyh.game.res.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 /*import org.springframework.cache.annotation.Cacheable;*/
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +18,11 @@ import com.xyh.game.dao.UserDao;
 import com.xyh.game.dao2.CardDao;
 import com.xyh.game.model.User;
 import com.xyh.game.req.TestReq;
-import com.xyh.game.res.ResResultEntity;
-import com.xyh.game.res.ResTestEntity;
+
+import java.util.Optional;
 
 @Controller
+@RequestMapping("/user")
 public class Usercontroller {
 	@Autowired 
 	UserDao userDao;
@@ -42,10 +46,31 @@ public class Usercontroller {
 		resultEntity.setResultCode(Constants.ResultCode.OK);
 		return resultEntity;		
 	}
-	@GetMapping("/user")
+/*	@GetMapping("")
 	public String testthy(){
 		return "testim";
+	}*/
+
+	@GetMapping("/info")
+	@ResponseBody
+	public BaseRes<ImRes> info(@RequestParam Long id){
+		BaseRes<ImRes> res = new BaseRes<>();
+
+		User user = userDao.findById(id).get();
+		MineRes mine = new MineRes();
+		BeanUtils.copyProperties(user, mine);
+		ImRes imRes = new ImRes();
+		imRes.setMine(mine);
+		res.setCode(0);
+		res.setData(imRes);
+		return res;
 	}
 
+	@GetMapping("")
+	public String getFtlDemo(Model model){
+		model.addAttribute("f","Ftl");
+		return "FtlTest";
+
+	}
 
 }

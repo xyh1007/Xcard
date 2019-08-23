@@ -9,7 +9,7 @@
  
 layui.define(['layer', 'laytpl', 'upload'], function(exports){
   
-  var v = '3.8.0';
+  var v = '1.0.0';
   var $ = layui.$;
   var layer = layui.layer;
   var laytpl = layui.laytpl;
@@ -1495,8 +1495,8 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     
     //关于
     ,about: function(){
-      layer.alert('版本： '+ v + '<br>版权所有：<a href="http://layim.layui.com" target="_blank">layim.layui.com</a>', {
-        title: '关于 LayIM'
+      layer.alert('版本： '+ v + '<br>版权所有：<a href="http://www.xyh.com" target="_blank">www.xyh.com</a>', {
+        title: '关于 XcardIM'
         ,shade: false
       });
     }

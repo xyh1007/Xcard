@@ -1,0 +1,11 @@
+p:after
+{
+    content:"";
+    border: 7px solid transparent;
+    border-bottom-color: #fff;
+}
+/*
+p{
+    background: #0C0C0C;
+    width: 50px;
+}*/

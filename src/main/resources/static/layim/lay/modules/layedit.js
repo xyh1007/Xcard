@@ -423,7 +423,7 @@ layui.define(['layer', 'form'], function(exports){
           ,shadeClose: true
           ,shade: 0.1
           ,skin: 'layui-layer-msg'
-          ,content: ['http://www.layui.com/about/layedit/help.html', 'no']
+          ,content: ['http://www.layui.com//layedit/help.html', 'no']
         });
       }
     }
