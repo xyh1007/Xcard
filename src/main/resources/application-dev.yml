@@ -3,10 +3,10 @@ server:
   #context-path: /market
   tomcat:
     uri-encoding: UTF-8
-spring: 
-  redis: 
+spring:
+  redis:
     # Redis数据库索引（默认为0）
-    database: 0 
+    database: 0
     host: 10.0.2.109
     port: 32774
     password: 123456
@@ -16,7 +16,7 @@ spring:
         max-wait: 1
         max-idle: 8
         min-idle: 0
-    timeout: 0 
+    timeout: 0
   mvc:
     static-path-pattern:  /**
 
@@ -43,7 +43,7 @@ spring:
     #suffix: .jsp
   datasource:
     db1:
-      type: com.alibaba.druid.pool.DruidDataSource   
+      type: com.alibaba.druid.pool.DruidDataSource
       url: jdbc:mysql://mysql-lb.jxdev.fccs.cn:8066/fccs_cndb?characterEncoding=UTF-8
       username: test2019fccscn
       password: 6e9464d037b43a7e8b68
@@ -61,4 +61,12 @@ spring:
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     properties:
       hibernate:
-        dialect: com.xyh.game.CustomMysqlDialect 
+        dialect: com.xyh.game.CustomMysqlDialect
+
+
+  rabbitmq:
+    host: 192.168.2.129
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: my_vhost

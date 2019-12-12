@@ -5,19 +5,18 @@ import java.io.Serializable;
 public class ResResultEntity implements Serializable{
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -7864957568015378909L;
-	private int resultCode = -1;
+	private int code = -1;
     private String message;
 
-
-    public int getResultCode() {
-        return resultCode;
+    public int getCode() {
+        return code;
     }
 
-    public void setResultCode(int resultCode) {
-        this.resultCode = resultCode;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getMessage() {

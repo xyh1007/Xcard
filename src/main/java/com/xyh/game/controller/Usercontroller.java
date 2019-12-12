@@ -3,6 +3,7 @@ package com.xyh.game.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.xyh.game.req.UserLoginReq;
 import com.xyh.game.res.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,14 @@ import com.xyh.game.dao.UserDao;
 import com.xyh.game.dao2.CardDao;
 import com.xyh.game.model.User;
 import com.xyh.game.req.TestReq;
+import org.springframework.web.servlet.support.RequestContext;
 
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
 public class Usercontroller {
-	@Autowired 
+	@Autowired
 	UserDao userDao;
 /*	@Autowired
 	CardDao cardDao; */
@@ -35,16 +37,16 @@ public class Usercontroller {
 			HttpServletRequest request) {
 		//RequestContext requestContext = new RequestContext(request);
 		ResTestEntity resultEntity = new ResTestEntity();
-		
-		resultEntity.setResultCode(Constants.ResultCode.ERROR);
+
+		resultEntity.setCode(Constants.ResultCode.ERROR);
 		if (result.hasErrors()) {
 			resultEntity.setMessage(result.getAllErrors().get(0).getDefaultMessage());
 			return resultEntity;
 		}
 		User user = userDao.findByUsername(reqEntity.getName());
 		resultEntity.setUser(user);
-		resultEntity.setResultCode(Constants.ResultCode.OK);
-		return resultEntity;		
+		resultEntity.setCode(Constants.ResultCode.OK);
+		return resultEntity;
 	}
 /*	@GetMapping("")
 	public String testthy(){
@@ -72,5 +74,28 @@ public class Usercontroller {
 		return "FtlTest";
 
 	}
+
+	@PostMapping("/login")
+	@ResponseBody
+	public ResResultEntity login(@Valid @RequestBody UserLoginReq reqEntity,BindingResult result,HttpServletRequest request){
+		RequestContext requestContext = new RequestContext(request);
+		UserRes resultEntity = new UserRes();
+
+		resultEntity.setCode(Constants.ResultCode.ERROR);
+		if (result.hasErrors()) {
+			resultEntity.setMessage(result.getAllErrors().get(0).getDefaultMessage());
+			return resultEntity;
+		}
+		User user = userDao.findByUsernameAndPassword(reqEntity.getUserName(),reqEntity.getPassword());
+		if(null != user) {
+			resultEntity.setId(user.getId());
+			resultEntity.setUsername(user.getUsername());
+			resultEntity.setCode(Constants.ResultCode.OK);
+		}else{
+			resultEntity.setMessage(requestContext.getMessage("valid.login.failed"));
+		}
+		return resultEntity;
+	}
+
 
 }
