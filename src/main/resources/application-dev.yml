@@ -70,3 +70,11 @@ spring:
     username: admin
     password: admin
     virtual-host: my_vhost
+
+mybatis-plus:
+  typeAliasesPackage: com.xyh.game.mybatisplus.entity
+  # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
+  mapper-locations: classpath:dao/*.xml
+  configuration:
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

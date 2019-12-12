@@ -4,8 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.xyh.game.annotation.RCache;
+import com.xyh.game.freemarker.base.SpringBeanFactory;
 import com.xyh.game.req.UserLoginReq;
 import com.xyh.game.res.*;
+import freemarker.template.Configuration;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 /*import org.springframework.cache.annotation.Cacheable;*/
@@ -69,7 +71,7 @@ public class Usercontroller {
 		return res;
 	}
 
-	@GetMapping("")
+	@GetMapping("/getftl")
 	public String getFtlDemo(Model model){
 		model.addAttribute("f","Ftl");
 		return "FtlTest";

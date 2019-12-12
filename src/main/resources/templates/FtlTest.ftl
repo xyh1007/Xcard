@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/demo.css">
 </head>
 <body>
+[@test /]
 hello${f}
 <p>x</p>
 <div id="test"></div>
