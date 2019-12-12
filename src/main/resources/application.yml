@@ -1,19 +1,21 @@
-spring: 
+spring:
+  application:
+    name: xcard
   profiles:
     active: dev
-  messages: 
+  messages:
     basename: messages
   #thymeleaf:
     #prefix: classpath:/templates/
     #suffix: .html
     #cache: false #关闭缓存
-      
-#spring.thymeleaf.prefix=classpath:/templates/  
-#spring.thymeleaf.suffix=.html  
-#spring.thymeleaf.mode=HTML5  
-#spring.thymeleaf.encoding=UTF-8  
-# ;charset=<encoding> is added  
-#spring.thymeleaf.content-type=text/html  
-# set to false for hot refresh  
-  
-#spring.thymeleaf.cache=false  
+
+#spring.thymeleaf.prefix=classpath:/templates/
+#spring.thymeleaf.suffix=.html
+#spring.thymeleaf.mode=HTML5
+#spring.thymeleaf.encoding=UTF-8
+# ;charset=<encoding> is added
+#spring.thymeleaf.content-type=text/html
+# set to false for hot refresh
+
+#spring.thymeleaf.cache=false

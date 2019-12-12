@@ -3,6 +3,7 @@ package com.xyh.game.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.xyh.game.annotation.RCache;
 import com.xyh.game.req.UserLoginReq;
 import com.xyh.game.res.*;
 import org.springframework.beans.BeanUtils;
