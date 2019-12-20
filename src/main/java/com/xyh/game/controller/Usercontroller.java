@@ -3,6 +3,7 @@ package com.xyh.game.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.xyh.game.annotation.ParamsValid;
 import com.xyh.game.annotation.RCache;
 import com.xyh.game.freemarker.base.SpringBeanFactory;
 import com.xyh.game.req.UserLoginReq;
@@ -36,18 +37,13 @@ public class Usercontroller {
 	@RequestMapping(value = "/api/user/test", method = RequestMethod.POST)
 	@ResponseBody
 	//@Cacheable(value="user-key")
-	public ResResultEntity test(@Valid @RequestBody TestReq reqEntity,BindingResult result,
+	@ParamsValid
+	public Result test(@Valid @RequestBody TestReq reqEntity,BindingResult result,
 			HttpServletRequest request) {
 		//RequestContext requestContext = new RequestContext(request);
-		ResTestEntity resultEntity = new ResTestEntity();
-
-		resultEntity.setCode(Constants.ResultCode.ERROR);
-		if (result.hasErrors()) {
-			resultEntity.setMessage(result.getAllErrors().get(0).getDefaultMessage());
-			return resultEntity;
-		}
-		User user = userDao.findByUsername(reqEntity.getName());
-		resultEntity.setUser(user);
+		Result resultEntity = new Result();
+		User user = userDao.findByUsername(reqEntity.getUsername());
+		resultEntity.setDataBody(user);
 		resultEntity.setCode(Constants.ResultCode.OK);
 		return resultEntity;
 	}

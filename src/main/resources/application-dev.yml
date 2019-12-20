@@ -44,11 +44,12 @@ spring:
   datasource:
     db1:
       type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://mysql-lb.jxdev.fccs.cn:8066/fccs_cndb?characterEncoding=UTF-8
-      username: test2019fccscn
-      password: 6e9464d037b43a7e8b68
-      driver-class-name: com.mysql.jdbc.Driver
-    #db2:
+      url: jdbc:mysql://192.168.2.129:3306/xcard?characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+      username: root
+      password: 123456
+      #driver-class-name: com.mysql.jdbc.Driver  #mysql5
+      driver-class-name: com.mysql.cj.jdbc.Driver   #mysql8
+      #db2:
       #type: com.alibaba.druid.pool.DruidDataSource
       #url: jdbc:mysql://192.168.1.12:3306/xcard1?characterEncoding=UTF-8
       #username: root
