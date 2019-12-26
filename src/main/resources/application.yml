@@ -5,11 +5,14 @@ spring:
     active: dev
   messages:
     basename: messages
+
   #thymeleaf:
     #prefix: classpath:/templates/
     #suffix: .html
     #cache: false #关闭缓存
-
+logging:
+  config:
+    classpath: logback-spring.xml
 #spring.thymeleaf.prefix=classpath:/templates/
 #spring.thymeleaf.suffix=.html
 #spring.thymeleaf.mode=HTML5

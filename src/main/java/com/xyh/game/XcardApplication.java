@@ -2,6 +2,8 @@ package com.xyh.game;
 
 
 
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +23,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.xyh.game.interceptor.MyInterceptor1;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 
 

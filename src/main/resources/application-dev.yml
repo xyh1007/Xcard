@@ -19,7 +19,6 @@ spring:
     #timeout: 0
   mvc:
     static-path-pattern:  /**
-
   freemarker:
     request-context-attribute: req #req访问request
     suffix: .ftl #后缀名
@@ -32,13 +31,12 @@ spring:
       number_format: '0.##' #数字格式化，无小数点
       classic_compatible: true  #处理空值为空字符串
       auto_import: 'common/lib/index.ftl as m' #导入自定义内容
-
   # 默认值为 classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
   resources:
     static-locations: classpath:/static/
 
     #jsp配置
-  #view:
+    #view:
     #prefix: /
     #suffix: .jsp
   datasource:
@@ -63,8 +61,6 @@ spring:
     properties:
       hibernate:
         dialect: com.xyh.game.CustomMysqlDialect
-
-
   rabbitmq:
     host: 192.168.2.129
     port: 5672
@@ -79,3 +75,9 @@ mybatis-plus:
   configuration:
     # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+elasticsearch:
+  host: 192.168.2.129
+  port: 9200
+  username: elastic
+  password: changeme
