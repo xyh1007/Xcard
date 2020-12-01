@@ -2,8 +2,7 @@ package com.xyh.game;
 
 
 
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Settings;
+
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +14,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+//import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
+//import org.springframework.session.data.redis.config.ConfigureRedisAction;
+import org.springframework.session.data.redis.config.ConfigureRedisAction;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -31,6 +34,7 @@ import java.util.Arrays;
 @SpringBootApplication
 @ServletComponentScan
 @MapperScan("com.xyh.game.mybatisplus.dao")
+@EnableRedisHttpSession
 public class XcardApplication /*extends SpringBootServletInitializer */{
 /*	@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
@@ -38,6 +42,10 @@ public class XcardApplication /*extends SpringBootServletInitializer */{
     }*/
 	public static void main(String[] args) {
 		SpringApplication.run(XcardApplication.class, args);
+	}
+	@Bean
+	public static ConfigureRedisAction configureRedisAction() {
+		return ConfigureRedisAction.NO_OP;
 	}
 	@Configuration
 	public class VdmDefaultViewConfig implements WebMvcConfigurer {
@@ -67,7 +75,7 @@ public class XcardApplication /*extends SpringBootServletInitializer */{
 			System.out.println("Let's inspect the beans provided by Spring Boot:");
 
 			String[] beanNames = ctx.getBeanDefinitionNames();
-			Arrays.sort(beanNames);
+			//Arrays.sort(beanNames);
 			for (String beanName : beanNames) {
 				System.out.println(beanName);
 			}

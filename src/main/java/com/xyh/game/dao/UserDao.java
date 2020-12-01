@@ -9,6 +9,5 @@ import com.xyh.game.model.User;
 @Repository
 public interface UserDao extends JpaRepository<User, Long>{
 	 	User findByUsername(String username);
-	 	@RCache
 	 	User findByUsernameAndPassword(String username,String password);
 }

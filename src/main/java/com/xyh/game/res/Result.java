@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-@Data
+
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;
     private int code;
@@ -18,5 +18,29 @@ public class Result<T> implements Serializable {
     }
 
     public Result() {
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public T getDataBody() {
+        return dataBody;
+    }
+
+    public void setDataBody(T dataBody) {
+        this.dataBody = dataBody;
     }
 }

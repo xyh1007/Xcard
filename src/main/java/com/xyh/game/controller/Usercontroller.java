@@ -1,5 +1,6 @@
 package com.xyh.game.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -8,6 +9,7 @@ import com.xyh.game.annotation.RCache;
 import com.xyh.game.freemarker.base.SpringBeanFactory;
 import com.xyh.game.req.UserLoginReq;
 import com.xyh.game.res.*;
+import com.xyh.game.service.UserService;
 import freemarker.template.Configuration;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ import java.util.Optional;
 public class Usercontroller {
 	@Autowired
 	UserDao userDao;
+	@Resource
+	UserService userService;
 /*	@Autowired
 	CardDao cardDao; */
 	@RequestMapping(value = "/api/user/test", method = RequestMethod.POST)
@@ -42,7 +46,7 @@ public class Usercontroller {
 			HttpServletRequest request) {
 		//RequestContext requestContext = new RequestContext(request);
 		Result resultEntity = new Result();
-		User user = userDao.findByUsername(reqEntity.getUsername());
+		User user = userService.findByUsername(reqEntity.getUsername());
 		resultEntity.setDataBody(user);
 		resultEntity.setCode(Constants.ResultCode.OK);
 		return resultEntity;

@@ -8,6 +8,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 @Aspect
 @Component
+@Order(Ordered.LOWEST_PRECEDENCE)
 public class RedisCacheInterceptor {
 
     @Value("${spring.application.name}")

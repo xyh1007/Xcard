@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer" />
+    <title>Title</title>
+    <script type="text/javascript" src="../ckedit/ckeditor/plugins/pasteUploadImage/bluebird.min.js"></script>
+    <script type="text/javascript" src="http://imgf1.fccs.com.cn/js/jquery-1.6.js"></script>
+    <script src="../ckedit/ckeditor/ckeditor.js"></script>
+</head>
+<body>
+<input type="file" id="testck" name="testck" hidden>
+<form>
+    <button onclick="downloadIamge()">test</button>
+            <textarea name="editor1" id="editor1" rows="10" cols="80">
+                This is my textarea to be replaced with CKEditor 4.
+            </textarea>
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor 4
+        // instance, using default configuration.
+        //CKEDITOR.replace( 'editor1' );
+        $(function () {
+            function isIE() {
+                if (!!window.ActiveXObject || "ActiveXObject" in window) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            if (isIE()) {
+                var script = document.createElement('script');
+                script.type = 'text/javaScript';
+                script.src = 'js/bluebird.min.js';  // bluebird 文件地址
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            CKEDITOR.replace( 'editor1', {
+                //filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+                pasteUploadImageUrlApi: '/upload/uploadCkEditor.do?folder=manage/news&width=2500&height=3000&size=5000&fixed=0&watermark=0&classpath=imgm',
+                pasteUploadFileApi: '/upload/uploadCkEditor.do?folder=manage/news&width=2500&height=3000&size=5000&fixed=0&watermark=0&classpath=imgm',
+                filebrowserUploadUrl: '/upload/uploadCkEditor.do?folder=manage/news&width=2500&height=3000&size=5000&fixed=0&watermark=0&classpath=imgm'
+            } );
+        })
+
+    </script>
+</form>
+</body>
+</html>

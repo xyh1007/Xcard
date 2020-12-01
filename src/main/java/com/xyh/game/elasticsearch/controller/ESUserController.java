@@ -9,10 +9,7 @@ import com.xyh.game.res.Result;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.annotation.Resource;
@@ -35,6 +32,24 @@ public class ESUserController {
         resultEntity.setCode(Constants.ResultCode.ERROR);
         User user = new User();
         BeanUtils.copyProperties(testReq, user);
+        if (eUserService.indexIsExist("logstash-2019.12.23-000001")) {
+            resultEntity.setCode(Constants.ResultCode.OK);
+            resultEntity.setDataBody(true);
+            return resultEntity;
+        } else {
+            resultEntity.setDataBody(false);
+            return resultEntity;
+        }
+    }
+
+    @GetMapping("get")
+    //@ParamsValid
+    public Result get(/*@Valid @RequestBody TestReq testReq, BindingResult result, HttpServletRequest request*/) throws IOException {
+/*        Result resultEntity = new Result();
+        resultEntity.setCode(Constants.ResultCode.ERROR);
+        User user = new User();
+        BeanUtils.copyProperties(testReq, user);*/
+        Result resultEntity = new Result();
         if (eUserService.indexIsExist("logstash-2019.12.23-000001")) {
             resultEntity.setCode(Constants.ResultCode.OK);
             resultEntity.setDataBody(true);
