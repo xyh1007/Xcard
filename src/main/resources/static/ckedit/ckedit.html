@@ -11,7 +11,6 @@
 <body>
 <input type="file" id="testck" name="testck" hidden>
 <form>
-    <button onclick="downloadIamge()">test</button>
             <textarea name="editor1" id="editor1" rows="10" cols="80">
                 This is my textarea to be replaced with CKEditor 4.
             </textarea>
@@ -33,11 +32,13 @@
                 script.src = 'js/bluebird.min.js';  // bluebird 文件地址
                 document.getElementsByTagName('head')[0].appendChild(script);
             }
+            CKEDITOR.env.isCompatible = true;
             CKEDITOR.replace( 'editor1', {
                 //filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
                 pasteUploadImageUrlApi: '/upload/uploadCkEditor.do?folder=manage/news&width=2500&height=3000&size=5000&fixed=0&watermark=0&classpath=imgm',
                 pasteUploadFileApi: '/upload/uploadCkEditor.do?folder=manage/news&width=2500&height=3000&size=5000&fixed=0&watermark=0&classpath=imgm',
-                filebrowserUploadUrl: '/upload/uploadCkEditor.do?folder=manage/news&width=2500&height=3000&size=5000&fixed=0&watermark=0&classpath=imgm'
+                filebrowserUploadUrl: '/upload/uploadCkEditor.do?folder=manage/news&width=2500&height=3000&size=5000&fixed=0&watermark=0&classpath=imgm',
+                allowedContent: true
             } );
         })
 

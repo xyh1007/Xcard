@@ -10,8 +10,7 @@
     config.extraPlugins =['image2','exportpdf'];
 };*/
 CKEDITOR.editorConfig = function( config ) {
-    config.extraPlugins =['image2','exportpdf','pasteUploadImage','xhyperlink'];
-
+    config.extraPlugins =['image2','exportpdf','pasteUploadImage','xhyperlink','vote'];
     config.exportPdf_fileName = function( editor ) {
         return 'fccs' + '.pdf';
     }
