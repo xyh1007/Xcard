@@ -28,8 +28,10 @@ import java.util.List;
 //@Slf4j
 public class ParamsValidAspect {
     private final Logger log = LoggerFactory.getLogger(ParamsValidAspect.class);
+
     @Pointcut("@annotation(com.xyh.game.annotation.ParamsValid)")
-    private void anyMethod(){}
+    private void anyMethod() {
+    }
 
     @Around(value = "anyMethod()")
     public <T> T doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
@@ -57,19 +59,19 @@ public class ParamsValidAspect {
                 log.info(fieldError.getField() + "-----" + fieldError.getDefaultMessage());
                 String[] codes = fieldError.getCodes();
                 Object[] arguments = fieldError.getArguments();
-                if("Length".equals(codes[3])){//codes[3]获取校验的注解名
+                if ("Length".equals(codes[3])) {//codes[3]获取校验的注解名
                     String fieldName = fieldError.getField();
                     int maxLength = Integer.parseInt(String.valueOf(arguments[1]));
                     String objectName = fieldError.getObjectName();
                     int objectNameIndex = ArrayUtils.indexOf(parameterNames, objectName);
-                    if(objectNameIndex != -1){
+                    if (objectNameIndex != -1) {
                         //@valid 注解的参数
                         Object paramValue = args[objectNameIndex];
-                        String value = FieldUtil.getFieldValueByFieldName(fieldName,paramValue);
-                        FieldUtil.setFieldValueByFieldName(fieldError.getField(),paramValue,value.substring(0,maxLength));
+                        String value = FieldUtil.getFieldValueByFieldName(fieldName, paramValue);
+                        FieldUtil.setFieldValueByFieldName(fieldError.getField(), paramValue, value.substring(0, maxLength));
                         args[objectNameIndex] = paramValue;
                     }
-                }else{
+                } else {
                     resultEntity.setMessage(fieldError.getDefaultMessage());
                     return (T) resultEntity;
                 }
@@ -78,11 +80,11 @@ public class ParamsValidAspect {
         return (T) proceedingJoinPoint.proceed(args);
     }
 
-    @AfterReturning(value = "@within(org.springframework.web.bind.annotation.RestController)",returning = "result")
-    public void doAfterReturning(Result result){
-        if(result.getCode()==0) {
+    @AfterReturning(value = "@within(org.springframework.web.bind.annotation.RestController)", returning = "result")
+    public void doAfterReturning(Result result) {
+        if (result.getCode() == 0) {
             log.info(result.toString());
-        }else{
+        } else {
             log.error(result.toString());
         }
     }
