@@ -28,7 +28,7 @@ spring:
         ## 连接池中的最小空闲连接
         min-idle: 0
     cluster:
-      nodes: 192.168.2.129:9001, 192.168.2.129:9002, 192.168.2.129:9003, 192.168.2.129:9004, 192.168.2.129:9005, 192.168.2.129:9005
+      nodes: 192.168.31.65:7001, 192.168.31.65:7002, 192.168.31.65:7003, 192.168.31.65:7004, 192.168.31.65:7005, 192.168.31.65:7006
       # 获取失败 最大重定向次数
       maxAttempts: 5
       connectionTimeout: 6000
@@ -60,11 +60,11 @@ spring:
   datasource:
     db1:
       type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://192.168.2.129:3306/xcard?characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+      url: jdbc:mysql://192.168.31.65:3306/xcard?characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
       username: root
       password: 123456
-      #driver-class-name: com.mysql.jdbc.Driver  #mysql5
-      driver-class-name: com.mysql.cj.jdbc.Driver   #mysql8
+      driver-class-name: com.mysql.jdbc.Driver  #mysql5
+      #driver-class-name: com.mysql.cj.jdbc.Driver   #mysql8
       #db2:
       #type: com.alibaba.druid.pool.DruidDataSource
       #url: jdbc:mysql://192.168.1.12:3306/xcard1?characterEncoding=UTF-8
@@ -80,7 +80,7 @@ spring:
       hibernate:
         dialect: com.xyh.game.CustomMysqlDialect
   rabbitmq:
-    host: 192.168.2.129
+    host: 192.168.31.65
     port: 5672
     username: admin
     password: admin
@@ -99,7 +99,7 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 elasticsearch:
-  host: 192.168.2.129
+  host: 192.168.31.65
   port: 9200
   username: elastic
   password: changeme
